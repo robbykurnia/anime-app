@@ -11,7 +11,7 @@ export const headerCx = css`
   font-weight: 700;
 
   align-content: center;
-  padding: 16px;
+  padding: 16px 0px;
 `;
 
 export const backCx = css`
