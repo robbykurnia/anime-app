@@ -1,5 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useGetAnimeDetail } from "../../repositories/anime/anime-detail/use-get-anime-detail";
+
+import Star from "../Star";
+import Header from "../Header";
+import Spinner from "../Spinner";
+
 import {
   counterCx,
   descCx,
@@ -9,8 +14,6 @@ import {
   ratingCx,
   titleContainerCx,
 } from "./styles";
-import Star from "../Star";
-import Header from "../Header";
 
 const AnimeDetail = () => {
   const { id = "" } = useParams<{ id: string }>();
@@ -20,7 +23,7 @@ const AnimeDetail = () => {
     return (
       <>
         <Header back />
-        <p>Loading...</p>
+        <Spinner />
       </>
     );
 

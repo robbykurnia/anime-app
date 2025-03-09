@@ -1,19 +1,22 @@
 import { Fragment } from "react";
 import { useGetAnimeList } from "../../repositories/anime/anime-list/use-get-anime-list";
+
 import Header from "../Header";
-import { titleCx } from "./style";
-import InfiniteScroll from "../InfiniteScroll";
 import Card from "../Card/Card";
+import Spinner from "../Spinner";
+import InfiniteScroll from "../InfiniteScroll";
+
+import { titleCx } from "./style";
 
 const AnimeList = () => {
-  const { data, isLoading, error, fetchNextPage, hasNextPage } =
+  const { data, isLoading, isFetching, error, hasNextPage, fetchNextPage } =
     useGetAnimeList();
 
   if (isLoading)
     return (
       <>
         <Header />
-        <p>Loading...</p>
+        <Spinner />
       </>
     );
 
@@ -37,7 +40,8 @@ const AnimeList = () => {
           ))}
         </Fragment>
       ))}
-      {!isLoading && (
+      {isFetching && <Spinner />}
+      {!isFetching && (
         <InfiniteScroll
           loadMore={fetchNextPage}
           hasMore={hasNextPage}
